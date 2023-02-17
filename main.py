@@ -14,9 +14,10 @@ HTTP_URL_PATTERN = r'^http[s]*://.+'
 max_tokens = 500
 trueloaderimage = Image.open('DOM.png')
 donracksimage = Image.open('DOM.png')
+openai.api_key = openai.Secrets().get_secret("openai")["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"]
 #openai.api_key = "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"
 #openai.api_key="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"
-openai.api_key="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"
+#openai.api_key="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"
 
 # Function to split the text into chunks of a maximum number of tokens
 def split_into_many(text, max_tokens=max_tokens):
