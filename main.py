@@ -15,11 +15,11 @@ max_tokens = 500
 trueloaderimage = Image.open('DOM.png')
 donracksimage = Image.open('DOM.png')
 openai.organization = "org-yM6gJsJcyFMFdXlGtgMdxrUM"
-openai.api_key = os.getenv("OPENAI_API_KEY")
+#openai.api_key = os.getenv("OPENAI_API_KEY")
 #openai.api_key = openai.Secrets().get_secret("openai")["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"]
 #openai.api_key = "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"
 #openai.api_key="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"
-#openai.api_key="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"
+openai.api_key="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"
 
 # Function to split the text into chunks of a maximum number of tokens
 def split_into_many(text, max_tokens=max_tokens):
