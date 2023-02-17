@@ -120,8 +120,8 @@ def getopenairesponse(domain, userquestion):
     df = pd.read_csv('processed/embeddings.csv', index_col=0)
     df['embeddings'] = df['embeddings'].apply(eval).apply(np.array)
     df.head()
-    #return("Your Answer\n" + str(answer_question(df, question=userquestion, debug=True)))
-    return "I Dont Know"
+    return("Your Answer\n" + str(answer_question(df, question=userquestion, debug=True)))
+    #return "I Dont Know"
 
 def remove_newlines(serie):
     serie = serie.str.replace('\n', ' ')
