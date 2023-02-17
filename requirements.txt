@@ -53,3 +53,7 @@ wheel==0.38.4
 zipp==3.13.0
 openai
 tiktoken
+scipy
+matplotlib
+plotly
+scikit-learn 
