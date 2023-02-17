@@ -57,3 +57,4 @@ scipy
 matplotlib
 plotly
 scikit-learn 
+gspread
