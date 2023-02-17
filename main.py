@@ -215,7 +215,7 @@ st.caption("Last updated information fed to this tool : Dec 2022.")
 st.header("How to Use")
 st.write("Step1 : Select the Business name from the sidebar")
 st.write("Step2: Enter your question")
-st.write("Step3: Click Get results button")
+st.write("Step3: Click Get Answers button")
 st.write("Step4: Wait for few seconds to get your answer")
 
 st.caption("\n\n If you face any issues, send the screenshot to deepa@digitalseo.in")
