@@ -208,7 +208,6 @@ def answer_question(
         return ""
 
 ###############################################################################
-st.title("DigitalSEO Chat Support")
 st.header("Welcome to Chat Support Help Centre")
 st.info('This tool will be used by Chat Support executives when the question posted by customer requires a detailed and indepth answer. \n The tool has been pre-trained with information about the business offering ', icon="ℹ️")
 st.caption("Last updated information fed to this tool : Dec 2022.")
