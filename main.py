@@ -208,13 +208,6 @@ def answer_question(
         print("Errr while processing name" )
         return ""
 
-def getopenaikeyfromexcel():
-  sa = gspread.service_account(filename="pythonautomations-363412-78d0361be113.json")
-  sheets = sa.open("OpenAI DS Master Sheet ")
-  tabsheet = sheets.worksheet("Sheet1")
-  keyfromexcel = tabsheet.cell(2, 2)
-  return keyfromexcel.value
-
 ###############################################################################
 
 st.header("Welcome to Chat Support Help Centre")
