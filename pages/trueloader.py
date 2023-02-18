@@ -4,7 +4,6 @@ import main
 
 st2.image("TRU.png", width=300)
 st2.header("Trueloader - Data Integration Platform")
-
 question = st2.text_input("What's Your Question", '')
 
 if st2.button('Get Answer'):
