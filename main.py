@@ -74,14 +74,14 @@ def getopenairesponse(domain, userquestion):
 
     # Set the text column to be the raw text with the newlines removed
     df['text'] = df.fname + ". " + remove_newlines(df.text)
-    df.to_csv('processed/scraped.csv')
+    df.to_csv('processed/'+domain+'scraped.csv')
     df.head()
 
     ################################
     # Load the cl100k_base tokenizer which is designed to work with the ada-002 model
     tokenizer = tiktoken.get_encoding("cl100k_base")
 
-    df = pd.read_csv('processed/scraped.csv', index_col=0)
+    df = pd.read_csv('processed/'+domain+'scraped.csv', index_col=0)
     df.columns = ['title', 'text']
 
     # Tokenize the text and save the number of tokens to a new column
@@ -113,10 +113,10 @@ def getopenairesponse(domain, userquestion):
     ################################
     df['embeddings'] = df.text.apply(
         lambda x: openai.Embedding.create(input=x, engine='text-embedding-ada-002')['data'][0]['embedding'])
-    df.to_csv('processed/embeddings.csv')
+    df.to_csv('processed/'+domain+'embeddings.csv')
     df.head()
 
-    df = pd.read_csv('processed/embeddings.csv', index_col=0)
+    df = pd.read_csv('processed/'+domain+'embeddings.csv', index_col=0)
     df['embeddings'] = df['embeddings'].apply(eval).apply(np.array)
     df.head()
     return("Your Answer\n" + str(answer_question(df, question=userquestion, debug=True)))
@@ -182,27 +182,25 @@ def answer_question(
         #print("LENGTH OF PROMPT:\n" + len(context))
         print("\n\n")
 
-    #try:
+    try:
         # Create a completions using the question and context
-    #    response = openai.Completion.create(
+        response = openai.Completion.create(
     #        #prompt=f"Assume you are Chat Support Executive . Answers need to be short , assertive,friendly and provoke conversation. Frame the answer for the question based on the context below, and if the question can't be answered based on the context, say \"I don't know\"\n\nContext: {context}\n\n---\n\nQuestion: {question}\nAnswer:",
-    #        prompt=f"Assume you are Chat Support Executive. Answers should be easy to understand, concise (up to 50 words) and helpful. Keep it relevant to the question. Frame the answer for the question based on the context below, and if the question can't be answered based on the context, say \"i don't know\"\n\nContext: {context}\n\n---\n\nQuestion: {question}\nAnswer:",
-    #        temperature=0,
-    #        max_tokens=max_tokens,
-    #        top_p=1,
-    #        frequency_penalty=0,
-    #        presence_penalty=0,
-    #        stop=stop_sequence,
-    #        model=model,
-     #   )
+            prompt=f"Assume you are Chat Support Executive. Answers should be easy to understand, concise (up to 50 words) and helpful. Keep it relevant to the question. Frame the answer for the question based on the context below, and if the question can't be answered based on the context, say \"i don't know\"\n\nContext: {context}\n\n---\n\nQuestion: {question}\nAnswer:",
+            temperature=0,
+            max_tokens=max_tokens,
+            top_p=1,
+           frequency_penalty=0,
+            presence_penalty=0,
+            stop=stop_sequence,
+            model=model,
+       )
         #print("Model used  :: " + str(response["model"]))
         #print("prompt_tokens :::  " + str(response["usage"][0]["prompt_tokens"].strip()))
         #print("completion_tokens :::  " + str(response["usage"][0]["completion_tokens"].strip())
         #print("total_tokens :::  " + str(response["usage"][0]["total_tokens"].strip()))
-      #  print(response)
-      #  return response["choices"][0]["text"].strip()
-     return context
-
+        print(response)
+        return response["choices"][0]["text"].strip()    
     except Exception as e:
         print(e)
         print("Errr while processing name" )
