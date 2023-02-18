@@ -186,7 +186,7 @@ def answer_question(
         # Create a completions using the question and context
         response = openai.Completion.create(
     #        #prompt=f"Assume you are Chat Support Executive . Answers need to be short , assertive,friendly and provoke conversation. Frame the answer for the question based on the context below, and if the question can't be answered based on the context, say \"I don't know\"\n\nContext: {context}\n\n---\n\nQuestion: {question}\nAnswer:",
-            prompt=f"Assume you are Chat Support Executive. Answers should be easy to understand, concise (up to 50 words) and helpful. Keep it relevant to the question. Frame the answer for the question based on the context below, and if the question can't be answered based on the context, say \"i don't know\"\n\nContext: {context}\n\n---\n\nQuestion: {question}\nAnswer:",
+            prompt=f"Assume you are Chat Support Executive. Answers should be easy to understand, concise (up to 50 words) and helpful. Keep it relevant to the question. Frame the answer for the question ONLY using the Context, dont add additional information apart from Context, and if the question can't be answered based on the context, say \"i don't know\"\n\nContext: {context}\n\n---\n\nQuestion: {question}\nAnswer:",
             temperature=0,
             max_tokens=max_tokens,
             top_p=1,
